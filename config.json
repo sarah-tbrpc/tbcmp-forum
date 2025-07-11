@@ -4,9 +4,5 @@
   "database": "mongo",
   "mongo": {
     "uri": "mongodb+srv://sarah-tbrpc:test1234@tbcmp-forum.eresqvd.mongodb.net/nodebb?retryWrites=true&w=majority"
-  },
-  "admin__username": "admin",
-  "admin__email": "sarah@tbrpc.org",
-  "admin__password": "test1234",
-  "admin__password__confirm": "test1234"
+  }
 }
