@@ -1,8 +1,12 @@
 {
   "url": "https://tbcmp-forum.onrender.com",
-  "secret": "sG2rgGoBffF6vln2zQ/JQz7DrFRF8BBbRKune4qVZQ=",
+  "secret": "sG2rgGoBffFf6vln2zQ/JQz7DrFRF8BBbRKune4qVZQ=",
   "database": "mongo",
   "mongo": {
     "uri": "mongodb+srv://sarah-tbrpc:test1234@tbcmp-forum.eresqvd.mongodb.net/nodebb?retryWrites=true&w=majority"
-  }
+  },
+  "admin__username": "admin",
+  "admin__email": "sarah@tbrpc.org",
+  "admin__password": "test1234",
+  "admin__password__confirm": "test1234"
 }
