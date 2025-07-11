@@ -1,6 +1,7 @@
 {
   "url": "https://tbcmp-forum.onrender.com",
   "secret": "sG2rgGoBffFf6vln2zQ/JQz7DrFRF8BBbRKune4qVZQ=",
+  "port": "process.env.PORT",
   "database": "mongo",
   "mongo": {
     "uri": "mongodb+srv://sarah-tbrpc:test1234@tbcmp-forum.eresqvd.mongodb.net/nodebb?retryWrites=true&w=majority"
