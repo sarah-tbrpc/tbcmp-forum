@@ -3,6 +3,6 @@
   "secret": "sG2rgGoBffFf6vln2zQ/JQz7DrFRF8BBbRKune4qVZQ=",
   "database": "mongo",
   "mongo": {
-    "uri": "mongodb+srv://sarah-tbrpc:p6RnJ8q3xSVMpYxm@tbcmp-forum.eresqvd.mongodb.net/nodebb?retryWrites=true&w=majority"
+    "uri": "mongodb+srv://sarah-tbrpc:test1234@tbcmp-forum.eresqvd.mongodb.net/nodebb?retryWrites=true&w=majority&appName=TBCMP-Forum"
   }
 }
