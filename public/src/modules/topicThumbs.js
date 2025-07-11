@@ -9,9 +9,7 @@ define('topicThumbs', [
 
 	Thumbs.getByPid = pid => api.get(`/posts/${encodeURIComponent(pid)}`, {}).then(post => Thumbs.get(post.tid));
 
-	Thumbs.delete = (id, path) => api.del(`/topics/${id}/thumbs`, {
-		path: path,
-	});
+	Thumbs.delete = (id, path) => api.del(`/topics/${id}/thumbs`, { path });
 
 	Thumbs.deleteAll = (id) => {
 		Thumbs.get(id).then((thumbs) => {
@@ -43,7 +41,6 @@ define('topicThumbs', [
 			]).then(results => new Promise((resolve) => {
 				const thumbs = results.reduce((memo, cur) => memo.concat(cur));
 				numThumbs = thumbs.length;
-
 				resolve(thumbs);
 			})).then(thumbs => Benchpress.render('modals/topic-thumbs', { thumbs })).then((html) => {
 				if (modal) {
@@ -64,10 +61,7 @@ define('topicThumbs', [
 								callback: () => {
 									Thumbs.upload(id).then(() => {
 										Thumbs.modal.open({ ...payload, modal });
-										require(['composer'], (composer) => {
-											composer.updateThumbCount(id, $(`[component="composer"][data-uuid="${id}"]`));
-											resolve();
-										});
+										resolve(); // <-- resolve directly here
 									});
 									return false;
 								},
@@ -91,19 +85,12 @@ define('topicThumbs', [
 		modalEl.addEventListener('click', (ev) => {
 			if (ev.target.closest('button[data-action="remove"]')) {
 				bootbox.confirm('[[modules:thumbs.modal.confirm-remove]]', (ok) => {
-					if (!ok) {
-						return;
-					}
+					if (!ok) return;
 
 					const id = ev.target.closest('[data-id]').getAttribute('data-id');
 					const path = ev.target.closest('[data-path]').getAttribute('data-path');
-					api.del(`/topics/${id}/thumbs`, {
-						path: path,
-					}).then(() => {
+					api.del(`/topics/${id}/thumbs`, { path }).then(() => {
 						Thumbs.modal.open(payload);
-						require(['composer'], (composer) => {
-							composer.updateThumbCount(uuid, $(`[component="composer"][data-uuid="${uuid}"]`));
-						});
 					}).catch(alerts.error);
 				});
 			}
@@ -113,9 +100,7 @@ define('topicThumbs', [
 	Thumbs.modal.handleSort = ({ modal, numThumbs }) => {
 		if (numThumbs > 1) {
 			const selectorEl = modal.find('.topic-thumbs-modal');
-			selectorEl.sortable({
-				items: '[data-id]',
-			});
+			selectorEl.sortable({ items: '[data-id]' });
 			selectorEl.on('sortupdate', Thumbs.modal.handleSortChange);
 		}
 	};
